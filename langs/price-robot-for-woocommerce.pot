@@ -1,3 +1,39 @@
+# Copyright (C) 2022 WPFactory
+# This file is distributed under the same license as the Price Robot for WooCommerce Pro plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: price-robot-for-woocommerce 1.3.0-dev\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/price-robot-for-woocommerce\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2022-10-26T00:17:33+02:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.4.0\n"
+"X-Domain: price-robot-for-woocommerce\n"
+
+#. Plugin Name of the plugin
+msgid "Price Robot for WooCommerce Pro"
+msgstr ""
+
+#. Plugin URI of the plugin
+msgid "https://wpfactory.com/item/price-robot-for-woocommerce-plugin/"
+msgstr ""
+
+#. Description of the plugin
+msgid "The plugin calculates optimal price for products in WooCommerce."
+msgstr ""
+
+#. Author of the plugin
+msgid "WPFactory"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://wpfactory.com"
+msgstr ""
+
 #: includes/class-alg-wc-price-robot-admin.php:90
 msgid "Price Robot: All Products"
 msgstr ""
@@ -11,11 +47,7 @@ msgid "Price Robot: Disabled"
 msgstr ""
 
 #: includes/class-alg-wc-price-robot-admin.php:132
-#, php-format
-msgid ""
-"Free plugin version is limited to ten price robot enabled products. Please "
-"get <a href=\"%s\" target=\"_blank\">Price Robot for WooCommerce Pro</a> to "
-"enable unlimited number of products."
+msgid "Free plugin version is limited to ten price robot enabled products. Please get <a href=\"%s\" target=\"_blank\">Price Robot for WooCommerce Pro</a> to enable unlimited number of products."
 msgstr ""
 
 #: includes/class-alg-wc-price-robot-admin.php:150
@@ -36,27 +68,22 @@ msgid "Enable Price Robot"
 msgstr ""
 
 #: includes/class-alg-wc-price-robot-admin.php:274
-#, php-format
 msgid "Last sale: %s"
 msgstr ""
 
 #: includes/class-alg-wc-price-robot-admin.php:275
-#, php-format
 msgid "Timeframe sales: %s"
 msgstr ""
 
 #: includes/class-alg-wc-price-robot-admin.php:276
-#, php-format
 msgid "Product ID: %s"
 msgstr ""
 
 #: includes/class-alg-wc-price-robot-admin.php:277
-#, php-format
 msgid "Original price: %s"
 msgstr ""
 
 #: includes/class-alg-wc-price-robot-core.php:244
-#, php-format
 msgid "Data last updated on %s."
 msgstr ""
 
@@ -92,10 +119,6 @@ msgstr ""
 msgid "Price robot data have been updated."
 msgstr ""
 
-#: includes/class-alg-wc-price-robot.php:131
-msgid "Settings"
-msgstr ""
-
 #: includes/class-alg-wc-price-robot.php:134
 msgid "Go Pro"
 msgstr ""
@@ -122,8 +145,7 @@ msgstr ""
 #: includes/robots/class-alg-wc-price-robot-formula.php:32
 #: includes/robots/class-alg-wc-price-robot-last-sale.php:38
 #: includes/robots/class-alg-wc-price-robot-pretty-price.php:36
-msgid ""
-"Applied to all products with <strong>price robot enabled</strong> option."
+msgid "Applied to all products with <strong>price robot enabled</strong> option."
 msgstr ""
 
 #: includes/robots/class-alg-wc-price-robot-formula.php:78
@@ -150,35 +172,23 @@ msgstr ""
 
 #: includes/robots/class-alg-wc-price-robot-last-sale.php:31
 #: includes/robots/class-alg-wc-price-robot-pretty-price.php:31
-msgid ""
-"This robot is deprecated. Use \"Formula\" instead. If you disable the robot, "
-"its settings section will be removed."
+msgid "This robot is deprecated. Use \"Formula\" instead. If you disable the robot, its settings section will be removed."
 msgstr ""
 
 #: includes/robots/class-alg-wc-price-robot-last-sale.php:34
-msgid ""
-"When enabled, modifies the product price based on current product's sales "
-"data (last sale price and time since last sale)."
+msgid "When enabled, modifies the product price based on current product's sales data (last sale price and time since last sale)."
 msgstr ""
 
 #: includes/robots/class-alg-wc-price-robot-last-sale.php:35
-msgid ""
-"The price will be decreased by <em>Price Change Step (%)</em> amount, if "
-"there is less than <em>Sale Rate Goal</em> pieces of product sold in "
-"selected <em>Timeframe in Days</em>."
+msgid "The price will be decreased by <em>Price Change Step (%)</em> amount, if there is less than <em>Sale Rate Goal</em> pieces of product sold in selected <em>Timeframe in Days</em>."
 msgstr ""
 
 #: includes/robots/class-alg-wc-price-robot-last-sale.php:36
-msgid ""
-"E.g. you set sale rate goal to 0 pieces, timeframe to 30 days, price change "
-"step to 5% and products original price to 100$."
+msgid "E.g. you set sale rate goal to 0 pieces, timeframe to 30 days, price change step to 5% and products original price to 100$."
 msgstr ""
 
 #: includes/robots/class-alg-wc-price-robot-last-sale.php:37
-msgid ""
-"If there are no sales for that product in 30 days, then the price is "
-"decreased to 95$. If there are no sales for 30 days more, the price is again "
-"decreased by 5%. This continues until maximum discount percent is reached."
+msgid "If there are no sales for that product in 30 days, then the price is decreased to 95$. If there are no sales for 30 days more, the price is again decreased by 5%. This continues until maximum discount percent is reached."
 msgstr ""
 
 #: includes/robots/class-alg-wc-price-robot-last-sale.php:142
@@ -187,22 +197,17 @@ msgid "Timeframe in days"
 msgstr ""
 
 #: includes/robots/class-alg-wc-price-robot-last-sale.php:144
-msgid ""
-"If you modify this timeframe - data must be updated for prices to change. "
-"This will be done automatically, according to settings in General section."
+msgid "If you modify this timeframe - data must be updated for prices to change. This will be done automatically, according to settings in General section."
 msgstr ""
 
 #: includes/robots/class-alg-wc-price-robot-last-sale.php:145
 #: includes/settings/class-alg-wc-price-robot-settings-general.php:86
-#, php-format
 msgid "You can also <a href=\"%s\">update data manually</a>."
 msgstr ""
 
 #: includes/robots/class-alg-wc-price-robot-last-sale.php:147
 #: includes/settings/class-alg-wc-price-robot-settings-general.php:88
-msgid ""
-"You can enter a fraction of a day here, however we do recommend setting one "
-"full day at least."
+msgid "You can enter a fraction of a day here, however we do recommend setting one full day at least."
 msgstr ""
 
 #: includes/robots/class-alg-wc-price-robot-last-sale.php:154
@@ -234,9 +239,7 @@ msgid "Min stock"
 msgstr ""
 
 #: includes/robots/class-alg-wc-price-robot-last-sale.php:179
-msgid ""
-"Minimal product stock to apply the price robot. Set zero to disable and "
-"handle products with any stock."
+msgid "Minimal product stock to apply the price robot. Set zero to disable and handle products with any stock."
 msgstr ""
 
 #: includes/robots/class-alg-wc-price-robot-last-sale.php:186
@@ -248,10 +251,7 @@ msgid "Sale rate goal in selected timeframe. Set zero to disable."
 msgstr ""
 
 #: includes/robots/class-alg-wc-price-robot-last-sale.php:188
-#, php-format
-msgid ""
-"Sales in your shop: on average %.2f pieces of each product are sold in %d "
-"days timeframe."
+msgid "Sales in your shop: on average %.2f pieces of each product are sold in %d days timeframe."
 msgstr ""
 
 #: includes/robots/class-alg-wc-price-robot-pretty-price.php:28
@@ -259,17 +259,11 @@ msgid "Final Price"
 msgstr ""
 
 #: includes/robots/class-alg-wc-price-robot-pretty-price.php:34
-msgid ""
-"When enabled, modifies the product price, so that it <strong>includes 99 "
-"cents</strong> in it. E.g. if current price is <code>$98.55</code>, robot "
-"will change it to <code>$98.99</code>."
+msgid "When enabled, modifies the product price, so that it <strong>includes 99 cents</strong> in it. E.g. if current price is <code>$98.55</code>, robot will change it to <code>$98.99</code>."
 msgstr ""
 
 #: includes/robots/class-alg-wc-price-robot-pretty-price.php:35
-msgid ""
-"The robot changes the product price last, after all other robots made their "
-"modifications to the price. This insures that <strong>price is final</"
-"strong> and no other changes are made afterwards."
+msgid "The robot changes the product price last, after all other robots made their modifications to the price. This insures that <strong>price is final</strong> and no other changes are made afterwards."
 msgstr ""
 
 #: includes/robots/class-alg-wc-price-robot-pretty-price.php:82
@@ -313,9 +307,7 @@ msgid "Automatic pricing"
 msgstr ""
 
 #: includes/settings/class-alg-wc-price-robot-settings-general.php:48
-msgid ""
-"This will change products prices on frontend. If disabled, will work in "
-"Advisor mode."
+msgid "This will change products prices on frontend. If disabled, will work in Advisor mode."
 msgstr ""
 
 #: includes/settings/class-alg-wc-price-robot-settings-general.php:54
@@ -327,9 +319,7 @@ msgid "Ignored unless the \"Automatic pricing\" option is enabled."
 msgstr ""
 
 #: includes/settings/class-alg-wc-price-robot-settings-general.php:56
-#, php-format
-msgid ""
-"If disabled, visit WooCommerce %s to enable the robot on per product basis."
+msgid "If disabled, visit WooCommerce %s to enable the robot on per product basis."
 msgstr ""
 
 #: includes/settings/class-alg-wc-price-robot-settings-general.php:57
@@ -342,7 +332,6 @@ msgid "Debug"
 msgstr ""
 
 #: includes/settings/class-alg-wc-price-robot-settings-general.php:66
-#, php-format
 msgid "Adds \"Price Robot Debug\" column to WooCommerce %s."
 msgstr ""
 
@@ -359,10 +348,7 @@ msgid "Update data now"
 msgstr ""
 
 #: includes/settings/class-alg-wc-price-robot-settings-general.php:85
-msgid ""
-"If you modify this timeframe, then data must be updated for prices to "
-"change. This will be done automatically, according to the \"Schedule\" "
-"option."
+msgid "If you modify this timeframe, then data must be updated for prices to change. This will be done automatically, according to the \"Schedule\" option."
 msgstr ""
 
 #: includes/settings/class-alg-wc-price-robot-settings-general.php:95
@@ -382,9 +368,7 @@ msgid "Treat variations as single product."
 msgstr ""
 
 #: includes/settings/class-alg-wc-price-robot-settings-general.php:106
-msgid ""
-"Makes sense if you are going to have same (equal) prices for all variations "
-"of a variable product."
+msgid "Makes sense if you are going to have same (equal) prices for all variations of a variable product."
 msgstr ""
 
 #: includes/settings/class-alg-wc-price-robot-settings-general.php:107
