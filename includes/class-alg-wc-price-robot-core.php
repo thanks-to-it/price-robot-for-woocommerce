@@ -30,10 +30,10 @@ class Alg_WC_Price_Robot_Core {
 		require_once( 'robots/class-alg-wc-price-robot-formula.php' );
 		// Deprecated
 		if ( 'yes' === get_option( 'alg_price_robot_last_sale_enabled', 'no' ) ) {
-			require_once( 'robots/class-alg-wc-price-robot-last-sale.php' );
+			require_once( 'robots/deprecated/class-alg-wc-price-robot-last-sale.php' );
 		}
 		if ( 'yes' === get_option( 'alg_price_robot_pretty_price_enabled', 'no' ) ) {
-			require_once( 'robots/class-alg-wc-price-robot-pretty-price.php' );
+			require_once( 'robots/deprecated/class-alg-wc-price-robot-pretty-price.php' );
 		}
 
 		$this->is_wc_version_below_3 = version_compare( get_option( 'woocommerce_version', null ), '3.0.0', '<' );
@@ -91,6 +91,7 @@ class Alg_WC_Price_Robot_Core {
 	 * @version 1.3.0
 	 * @since   1.0.0
 	 *
+	 * @todo    [now] [!!!] (dev) `$price = ( abs( $price - $original_price ) < 1 ? $original_price : $price );`?
 	 * @todo    [now] [!!!] (dev) `woocommerce_get_sale_price`: rethink
 	 * @todo    [next] (dev) rename function?
 	 * @todo    [next] (dev) rename `alg_woocommerce_price_robot` filter?
@@ -117,7 +118,6 @@ class Alg_WC_Price_Robot_Core {
 			$original_price = $price;
 			$modified_price = apply_filters( 'alg_woocommerce_price_robot', $price, $product_id, $original_price );
 			$price          = ( $modified_price > 0 ? round( $modified_price, get_option( 'woocommerce_price_num_decimals', 2 ) ) : 0 );
-			$price          = ( abs( $price - $original_price ) < 1 ? $original_price : $price );
 		}
 		return $price;
 	}
@@ -251,10 +251,9 @@ class Alg_WC_Price_Robot_Core {
 	 * @since   1.3.0
 	 *
 	 * @todo    [now] [!!!] (dev) finish this, e.g. in admin
-	 * @todo    [now] [!!!] (dev) to Pro?
 	 */
 	function is_price_robot_enabled( $product_id ) {
-		return ( 'yes' === get_option( 'alg_wc_price_robot_all_products', 'no' ) || 'yes' === get_post_meta( $product_id, '_price_robot_enabled', true ) );
+		return ( apply_filters( 'alg_wc_price_robot_all_products', false ) || 'yes' === get_post_meta( $product_id, '_price_robot_enabled', true ) );
 	}
 
 }

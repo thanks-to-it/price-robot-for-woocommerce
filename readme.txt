@@ -3,7 +3,7 @@ Contributors: wpcodefactory, algoritmika, anbinder
 Tags: woocommerce, price, robot, advisor, woo commerce
 Requires at least: 5.0
 Tested up to: 6.0
-Stable tag: 1.2.0
+Stable tag: 1.3.0
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -11,13 +11,17 @@ The plugin calculates optimal price for products in WooCommerce. Can work as adv
 
 == Description ==
 
-**Price Robot for WooCommerce plugin** calculates optimal price for products in WooCommerce. Can work as advisor or in automatic mode.
+The **Price Robot for WooCommerce** plugin helps you calculate the optimal price for products in WooCommerce. Can work as an advisor or in automatic mode.
 
-### &#9989; Main Features ###
+### &#9989; How it Works ###
 
-The plugin modifies the product price by *product's sales data*. E.g. it can automatically decrease prices for products without sales in some selected timeframe.
+The plugin uses formula to calculate the product prices. You can set the formula by using plugin's shortcodes and mathematical operations.
 
-There is also an option to make prices "pretty", i.e. automatically modify the product price, so that it includes 99 cents in it.
+For example, the formula that automatically modifies the product price, so that it ends with *99* cents:
+
+`
+[ceil][product_price][/ceil]-0.01
+`
 
 ### &#128472; Feedback ###
 
@@ -37,12 +41,13 @@ There is also an option to make prices "pretty", i.e. automatically modify the p
 
 == Changelog ==
 
-= 1.3.0 - 24/10/2022 =
+= 1.3.0 - 01/11/2022 =
+* Dev - Pro - "Automatic pricing > All products" option added.
 * Dev - "Price by Sales" price robot marked as deprecated.
 * Dev - "Final Price" price robot marked as deprecated.
 * Dev - "Formula" price robot added.
-* Dev - "Automatic pricing > All products" option added.
 * Dev - "Empty/zero product prices" options added.
+* Dev - Minimal `1` price step removed.
 * Dev - Data update - "Timeframe in days" option duplicated in the "General" section.
 * Dev - Data update - Now processing orders only in the selected timeframe (i.e., "Timeframe in days").
 * Dev - Admin - "Reset Settings" options added.

@@ -32,7 +32,7 @@ class Alg_WC_Price_Robot_Settings_General extends Alg_WC_Price_Robot_Settings_Se
 	 * @version 1.3.0
 	 * @since   1.0.0
 	 *
-	 * @todo    [now] [!!!] (desc) `alg_wc_price_robot_all_products`
+	 * @todo    [later] (desc) `alg_wc_price_robot_all_products`
 	 * @todo    [now] [!!!] (desc) Data update
 	 */
 	function get_settings() {
@@ -49,16 +49,20 @@ class Alg_WC_Price_Robot_Settings_General extends Alg_WC_Price_Robot_Settings_Se
 				'id'        => 'alg_price_robot_general_auto_pricing_enabled',
 				'default'   => 'yes',
 				'type'      => 'checkbox',
+				'checkboxgroup' => 'start',
 			),
 			array(
-				'title'     => __( 'Automatic pricing > All products', 'price-robot-for-woocommerce' ),
-				'desc_tip'  => __( 'Ignored unless the "Automatic pricing" option is enabled.', 'price-robot-for-woocommerce' ) . ' ' .
+				'desc_tip'  => __( '"Automatic pricing" option must be enabled.', 'price-robot-for-woocommerce' ) . ' ' .
 					sprintf( __( 'If disabled, visit WooCommerce %s to enable the robot on per product basis.', 'price-robot-for-woocommerce' ),
-						'<a href="' . admin_url( 'edit.php?post_type=product' ) . '">' . __( 'products page', 'price-robot-for-woocommerce' ) . '</a>' ),
-				'desc'      => __( 'Enable', 'price-robot-for-woocommerce' ),
+						'<a href="' . admin_url( 'edit.php?post_type=product' ) . '">' . __( 'products page', 'price-robot-for-woocommerce' ) . '</a>' ) .
+					apply_filters( 'alg_wc_price_robot_settings',
+						'<br>You will need <a target="_blank" href="https://wpfactory.com/item/price-robot-for-woocommerce/">Price Robot for WooCommerce Pro</a> plugin version to enable this option.' ),
+				'desc'      => __( 'All products', 'price-robot-for-woocommerce' ),
 				'id'        => 'alg_wc_price_robot_all_products',
 				'default'   => 'no',
 				'type'      => 'checkbox',
+				'custom_attributes' => apply_filters( 'alg_wc_price_robot_settings', array( 'disabled' => 'disabled' ) ),
+				'checkboxgroup' => 'end',
 			),
 			array(
 				'title'     => __( 'Debug', 'price-robot-for-woocommerce' ),

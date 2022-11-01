@@ -22,7 +22,7 @@ class Alg_WC_Price_Robot_Admin {
 	 */
 	function __construct() {
 
-		if ( 'no' === get_option( 'alg_price_robot_general_auto_pricing_enabled', 'yes' ) || 'no' === get_option( 'alg_wc_price_robot_all_products', 'no' ) ) {
+		if ( 'no' === get_option( 'alg_price_robot_general_auto_pricing_enabled', 'yes' ) || ! apply_filters( 'alg_wc_price_robot_all_products', false ) ) {
 
 			// Price robot column
 			add_filter( 'manage_edit-product_columns',        array( $this, 'add_product_column_price_robot' ),    PHP_INT_MAX );
