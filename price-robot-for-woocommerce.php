@@ -3,12 +3,13 @@
 Plugin Name: Price Robot for WooCommerce
 Plugin URI: https://wpfactory.com/item/price-robot-for-woocommerce-plugin/
 Description: The plugin calculates optimal price for products in WooCommerce.
-Version: 1.3.2
+Version: 1.3.3
 Author: WPFactory
 Author URI: https://wpfactory.com
 Text Domain: price-robot-for-woocommerce
 Domain Path: /langs
-WC tested up to: 8.1
+WC tested up to: 9.1
+Requires Plugins: woocommerce
 */
 
 defined( 'ABSPATH' ) || exit;
@@ -29,7 +30,7 @@ if ( 'price-robot-for-woocommerce.php' === basename( __FILE__ ) ) {
 	}
 }
 
-defined( 'ALG_WC_PRICE_ROBOT_VERSION' ) || define( 'ALG_WC_PRICE_ROBOT_VERSION', '1.3.2' );
+defined( 'ALG_WC_PRICE_ROBOT_VERSION' ) || define( 'ALG_WC_PRICE_ROBOT_VERSION', '1.3.3' );
 
 defined( 'ALG_WC_PRICE_ROBOT_FILE' ) || define( 'ALG_WC_PRICE_ROBOT_FILE', __FILE__ );
 

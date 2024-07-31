@@ -2,8 +2,8 @@
 Contributors: wpcodefactory, omardabbas, karzin, anbinder, algoritmika, kousikmukherjeeli
 Tags: woocommerce, price, robot, advisor, woo commerce
 Requires at least: 5.0
-Tested up to: 6.3
-Stable tag: 1.3.2
+Tested up to: 6.6
+Stable tag: 1.3.3
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -40,6 +40,10 @@ For example, the formula that automatically modifies the product price, so that 
 2. Plugin admin area - WooCommerce > Products.
 
 == Changelog ==
+
+= 1.3.3 - 31/07/2024 =
+* WC tested up to: 9.1
+* Tested up to: 6.6.
 
 = 1.3.2 - 26/09/2023 =
 * WC tested up to: 8.1.
