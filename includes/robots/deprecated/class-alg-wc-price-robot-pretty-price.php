@@ -2,7 +2,7 @@
 /**
  * Price Robot for WooCommerce - Robot - Pretty Price
  *
- * @version 1.3.0
+ * @version 2.0.0
  * @since   1.0.0
  *
  * @author  Algoritmika Ltd.
@@ -17,26 +17,39 @@ class Alg_WC_Price_Robot_Pretty_Price extends Alg_WC_Price_Robot_Abstract {
 	/**
 	 * Constructor.
 	 *
-	 * @version 1.3.0
+	 * @version 2.0.0
 	 * @since   1.0.0
-	 *
-	 * @todo    [next] (dev) mark as deprecated
 	 */
 	function __construct() {
 
-		$this->id         = 'pretty_price';
-		$this->desc       = __( 'Final Price', 'price-robot-for-woocommerce' );
-		$this->priority   = 100;
-		$this->robot_desc  = '<p style="padding:10px;font-weight:bold;">' .
+		$this->id       = 'pretty_price';
+		$this->priority = 100;
+
+		add_action( 'init', array( $this, 'init_desc' ) );
+
+		parent::__construct();
+
+	}
+
+	/**
+	 * init_desc.
+	 *
+	 * @version 2.0.0
+	 * @since   2.0.0
+	 */
+	function init_desc() {
+
+		$this->desc = __( 'Final Price', 'price-robot-for-woocommerce' );
+
+		$this->robot_desc = '<p style="padding:10px;font-weight:bold;">' .
 			__( 'This robot is deprecated. Use "Formula" instead. If you disable the robot, its settings section will be removed.', 'price-robot-for-woocommerce' ) .
 		'</p>' .
 		'<ul style="list-style-type: disc; padding: revert;"><li>' . implode( '</li><li>', array(
-			__( 'When enabled, modifies the product price, so that it <strong>includes 99 cents</strong> in it. E.g. if current price is <code>$98.55</code>, robot will change it to <code>$98.99</code>.', 'price-robot-for-woocommerce' ),
+			__( 'When enabled, modifies the product price, so that it <strong>includes 99 cents</strong> in it. E.g., if current price is <code>$98.55</code>, robot will change it to <code>$98.99</code>.', 'price-robot-for-woocommerce' ),
 			__( 'The robot changes the product price last, after all other robots made their modifications to the price. This insures that <strong>price is final</strong> and no other changes are made afterwards.', 'price-robot-for-woocommerce' ),
 			__( 'Applied to all products with <strong>price robot enabled</strong> option.', 'price-robot-for-woocommerce' ),
 		) ) . '</li></ul>';
 
-		parent::__construct();
 	}
 
 	/**
@@ -74,34 +87,34 @@ class Alg_WC_Price_Robot_Pretty_Price extends Alg_WC_Price_Robot_Abstract {
 	function get_settings() {
 		$settings = array(
 			array(
-				'title'     => __( 'Robot Options', 'price-robot-for-woocommerce' ),
-				'type'      => 'title',
-				'id'        => 'alg_price_robot_pretty_price_options',
+				'title'             => __( 'Robot Options', 'price-robot-for-woocommerce' ),
+				'type'              => 'title',
+				'id'                => 'alg_price_robot_pretty_price_options',
 			),
 			array(
-				'title'     => __( 'Rounding type', 'price-robot-for-woocommerce' ),
-				'desc_tip'  => __( 'Select how to round the price before setting 99 cents.', 'price-robot-for-woocommerce' ),
-				'id'        => 'alg_price_robot_pretty_price_round_type',
-				'default'   => 'ceil',
-				'type'      => 'select',
-				'class'     => 'chosen_select',
-				'options'   => array(
+				'title'             => __( 'Rounding type', 'price-robot-for-woocommerce' ),
+				'desc_tip'          => __( 'Select how to round the price before setting 99 cents.', 'price-robot-for-woocommerce' ),
+				'id'                => 'alg_price_robot_pretty_price_round_type',
+				'default'           => 'ceil',
+				'type'              => 'select',
+				'class'             => 'chosen_select',
+				'options'           => array(
 					'round' => __( 'Round', 'price-robot-for-woocommerce' ),
 					'ceil'  => __( 'Round up', 'price-robot-for-woocommerce' ),
 					'floor' => __( 'Round down', 'price-robot-for-woocommerce' ),
 				),
 			),
 			array(
-				'title'     => __( 'Maximum price', 'price-robot-for-woocommerce' ),
-				'desc_tip'  => __( 'Maximum price. Set zero to disable and apply robot to any price.', 'price-robot-for-woocommerce' ),
-				'id'        => 'alg_price_robot_pretty_price_max_price',
-				'default'   => 0,
-				'type'      => 'number',
+				'title'             => __( 'Maximum price', 'price-robot-for-woocommerce' ),
+				'desc_tip'          => __( 'Maximum price. Set zero to disable and apply robot to any price.', 'price-robot-for-woocommerce' ),
+				'id'                => 'alg_price_robot_pretty_price_max_price',
+				'default'           => 0,
+				'type'              => 'number',
 				'custom_attributes' => array( 'step' => '0.0001', 'min'  => '0' ),
 			),
 			array(
-				'type'      => 'sectionend',
-				'id'        => 'alg_price_robot_pretty_price_options',
+				'type'              => 'sectionend',
+				'id'                => 'alg_price_robot_pretty_price_options',
 			),
 		);
 		return array_merge( parent::get_settings(), $settings );

@@ -2,7 +2,7 @@
 /**
  * Price Robot for WooCommerce - Robot - Formula - Shortcodes
  *
- * @version 1.3.0
+ * @version 2.0.0
  * @since   1.3.0
  *
  * @author  Algoritmika Ltd.
@@ -15,12 +15,37 @@ if ( ! class_exists( 'Alg_WC_Price_Robot_Formula_Shortcodes' ) ) :
 class Alg_WC_Price_Robot_Formula_Shortcodes {
 
 	/**
+	 * shortcodes.
+	 *
+	 * @version 2.0.0
+	 * @since   2.0.0
+	 */
+	public $shortcodes;
+
+	/**
+	 * prefix.
+	 *
+	 * @version 2.0.0
+	 * @since   2.0.0
+	 */
+	public $prefix;
+
+	/**
+	 * data.
+	 *
+	 * @version 2.0.0
+	 * @since   2.0.0
+	 */
+	public $data;
+
+	/**
 	 * Constructor.
 	 *
 	 * @version 1.3.0
 	 * @since   1.3.0
 	 *
-	 * @todo    [maybe] (feature) shortcode: `product_data`?
+	 * @todo    (v2.0.0) escape all output
+	 * @todo    (feature) shortcode: `product_data`?
 	 */
 	function __construct() {
 		$this->shortcodes = array(
@@ -90,7 +115,7 @@ class Alg_WC_Price_Robot_Formula_Shortcodes {
 	 * @version 1.3.0
 	 * @since   1.3.0
 	 *
-	 * @todo    [now] [!!!] (feature) more operators
+	 * @todo    (feature) more operators
 	 */
 	function shortcode_if( $atts, $content = '' ) {
 		$res = false;
@@ -116,8 +141,17 @@ class Alg_WC_Price_Robot_Formula_Shortcodes {
 	 * @since   1.3.0
 	 */
 	function shortcode_if_product_id( $atts, $content = '' ) {
-		return ( '' !== $content && isset( $atts['ids'] ) && '' !== $atts['ids'] && isset( $this->data ) && in_array( $this->data['product_id'], array_map( 'trim', explode( ',', $atts['ids'] ) ) ) ?
-			do_shortcode( $content ) : '' );
+		return (
+			(
+				'' !== $content &&
+				isset( $atts['ids'] ) &&
+				'' !== $atts['ids'] &&
+				isset( $this->data ) &&
+				in_array( $this->data['product_id'], array_map( 'trim', explode( ',', $atts['ids'] ) ) )
+			) ?
+			do_shortcode( $content ) :
+			''
+		);
 	}
 
 	/**
@@ -127,8 +161,17 @@ class Alg_WC_Price_Robot_Formula_Shortcodes {
 	 * @since   1.3.0
 	 */
 	function shortcode_if_product_id_not( $atts, $content = '' ) {
-		return ( '' !== $content && isset( $atts['ids'] ) && '' !== $atts['ids'] && isset( $this->data ) && ! in_array( $this->data['product_id'], array_map( 'trim', explode( ',', $atts['ids'] ) ) ) ?
-			do_shortcode( $content ) : '' );
+		return (
+			(
+				'' !== $content &&
+				isset( $atts['ids'] ) &&
+				'' !== $atts['ids'] &&
+				isset( $this->data ) &&
+				! in_array( $this->data['product_id'], array_map( 'trim', explode( ',', $atts['ids'] ) ) )
+			) ?
+			do_shortcode( $content ) :
+			''
+		);
 	}
 
 	/**
@@ -138,8 +181,16 @@ class Alg_WC_Price_Robot_Formula_Shortcodes {
 	 * @since   1.3.0
 	 */
 	function shortcode_if_user_id( $atts, $content = '' ) {
-		return ( '' !== $content && isset( $atts['ids'] ) && '' !== $atts['ids'] && in_array( get_current_user_id(), array_map( 'trim', explode( ',', $atts['ids'] ) ) ) ?
-			do_shortcode( $content ) : '' );
+		return (
+			(
+				'' !== $content &&
+				isset( $atts['ids'] ) &&
+				'' !== $atts['ids'] &&
+				in_array( get_current_user_id(), array_map( 'trim', explode( ',', $atts['ids'] ) ) )
+			) ?
+			do_shortcode( $content ) :
+			''
+		);
 	}
 
 	/**
@@ -149,8 +200,16 @@ class Alg_WC_Price_Robot_Formula_Shortcodes {
 	 * @since   1.3.0
 	 */
 	function shortcode_if_user_id_not( $atts, $content = '' ) {
-		return ( '' !== $content && isset( $atts['ids'] ) && '' !== $atts['ids'] && ! in_array( get_current_user_id(), array_map( 'trim', explode( ',', $atts['ids'] ) ) ) ?
-			do_shortcode( $content ) : '' );
+		return (
+			(
+				'' !== $content &&
+				isset( $atts['ids'] ) &&
+				'' !== $atts['ids'] &&
+				! in_array( get_current_user_id(), array_map( 'trim', explode( ',', $atts['ids'] ) ) )
+			) ?
+			do_shortcode( $content ) :
+			''
+		);
 	}
 
 	/**
@@ -170,7 +229,15 @@ class Alg_WC_Price_Robot_Formula_Shortcodes {
 	 * @since   1.3.0
 	 */
 	function shortcode_function( $atts, $content = '' ) {
-		return ( isset( $atts['name'] ) && '' !== $atts['name'] && function_exists( $atts['name'] ) ? $atts['name']() : '' );
+		return (
+			(
+				isset( $atts['name'] ) &&
+				'' !== $atts['name'] &&
+				function_exists( $atts['name'] )
+			) ?
+			$atts['name']() :
+			''
+		);
 	}
 
 	/**
@@ -179,10 +246,18 @@ class Alg_WC_Price_Robot_Formula_Shortcodes {
 	 * @version 1.3.0
 	 * @since   1.3.0
 	 *
-	 * @todo    [next] (feature) `$atts['precision']`
+	 * @todo    (feature) `$atts['precision']`
 	 */
 	function shortcode_round( $atts, $content = '' ) {
-		$round_func = ( isset( $atts['function'] ) && '' !== $atts['function'] && function_exists( $atts['function'] ) ? $atts['function'] : 'round' );
+		$round_func = (
+			(
+				isset( $atts['function'] ) &&
+				'' !== $atts['function'] &&
+				function_exists( $atts['function'] )
+			) ?
+			$atts['function'] :
+			'round'
+		);
 		return $this->output( $round_func( $this->process_content( $content ) ), $atts );
 	}
 
@@ -251,10 +326,15 @@ class Alg_WC_Price_Robot_Formula_Shortcodes {
 	 * @version 1.3.0
 	 * @since   1.3.0
 	 *
-	 * @todo    [next] (feature) function param(s)
+	 * @todo    (feature) function param(s)
 	 */
 	function shortcode_product_function( $atts, $content = '' ) {
-		if ( isset( $this->data ) && isset( $atts['name'] ) && ( $product = wc_get_product( $this->data['product_id'] ) ) && is_callable( array( $product, $atts['name'] ) ) ) {
+		if (
+			isset( $this->data ) &&
+			isset( $atts['name'] ) &&
+			( $product = wc_get_product( $this->data['product_id'] ) ) &&
+			is_callable( array( $product, $atts['name'] ) )
+		) {
 			return $this->output( $product->{$atts['name']}(), $atts );
 		}
 	}
@@ -311,11 +391,15 @@ class Alg_WC_Price_Robot_Formula_Shortcodes {
 	/**
 	 * output.
 	 *
-	 * @version 1.3.0
+	 * @version 2.0.0
 	 * @since   1.3.0
 	 */
 	function output( $value, $atts ) {
-		return ( '' === $value ? ( isset( $atts['on_empty'] ) ? $atts['on_empty'] : 0 ) : $value );
+		return (
+			'' === $value ?
+			( isset( $atts['on_empty'] ) ? wp_kses_post( $atts['on_empty'] ) : 0 ) :
+			$value
+		);
 	}
 
 	/**

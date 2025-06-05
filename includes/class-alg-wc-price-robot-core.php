@@ -2,7 +2,7 @@
 /**
  * Price Robot for WooCommerce - Core Class
  *
- * @version 1.3.0
+ * @version 2.0.0
  * @since   1.0.0
  *
  * @author  Algoritmika Ltd.
@@ -15,25 +15,60 @@ if ( ! class_exists( 'Alg_WC_Price_Robot_Core' ) ) :
 class Alg_WC_Price_Robot_Core {
 
 	/**
+	 * crons.
+	 *
+	 * @version 2.0.0
+	 * @since   2.0.0
+	 */
+	public $crons;
+
+	/**
+	 * admin.
+	 *
+	 * @version 2.0.0
+	 * @since   2.0.0
+	 */
+	public $admin;
+
+	/**
+	 * is_wc_version_below_3.
+	 *
+	 * @version 2.0.0
+	 * @since   2.0.0
+	 */
+	public $is_wc_version_below_3;
+
+	/**
+	 * price_filter.
+	 *
+	 * @version 2.0.0
+	 * @since   2.0.0
+	 */
+	public $price_filter;
+
+	/**
 	 * Constructor.
 	 *
-	 * @version 1.3.0
+	 * @version 2.0.0
 	 * @since   1.0.0
+	 *
+	 * @todo    (feature) by product pageviews?
 	 */
 	function __construct() {
 
-		$this->crons = require_once( 'class-alg-wc-price-robot-crons.php' );
-		$this->admin = require_once( 'class-alg-wc-price-robot-admin.php' );
+		$this->crons = require_once plugin_dir_path( __FILE__ ) . 'class-alg-wc-price-robot-crons.php';
+		$this->admin = require_once plugin_dir_path( __FILE__ ) . 'class-alg-wc-price-robot-admin.php';
 
-		// Robots
-		require_once( 'robots/class-alg-wc-price-robot-abstract.php' );
-		require_once( 'robots/class-alg-wc-price-robot-formula.php' );
-		// Deprecated
+		// Price robots
+		require_once plugin_dir_path( __FILE__ ) . 'robots/class-alg-wc-price-robot-abstract.php';
+		require_once plugin_dir_path( __FILE__ ) . 'robots/class-alg-wc-price-robot-formula.php';
+
+		// Deprecated price robots
 		if ( 'yes' === get_option( 'alg_price_robot_last_sale_enabled', 'no' ) ) {
-			require_once( 'robots/deprecated/class-alg-wc-price-robot-last-sale.php' );
+			require_once plugin_dir_path( __FILE__ ) . 'robots/deprecated/class-alg-wc-price-robot-last-sale.php';
 		}
 		if ( 'yes' === get_option( 'alg_price_robot_pretty_price_enabled', 'no' ) ) {
-			require_once( 'robots/deprecated/class-alg-wc-price-robot-pretty-price.php' );
+			require_once plugin_dir_path( __FILE__ ) . 'robots/deprecated/class-alg-wc-price-robot-pretty-price.php';
 		}
 
 		$this->is_wc_version_below_3 = version_compare( get_option( 'woocommerce_version', null ), '3.0.0', '<' );
@@ -51,11 +86,15 @@ class Alg_WC_Price_Robot_Core {
 	 * @version 1.3.0
 	 * @since   1.3.0
 	 *
-	 * @todo    [now] [!!!] (dev) `alg_price_robot_general_display_as_sale`: do we really need all filters - maybe `woocommerce_product_is_on_sale` alone is good enough?
+	 * @todo    (dev) `alg_price_robot_general_display_as_sale`: do we really need all filters - maybe `woocommerce_product_is_on_sale` alone is good enough?
 	 */
 	function add_price_hooks() {
 
-		$this->price_filter = ( $this->is_wc_version_below_3 ? 'woocommerce_get_price' : 'woocommerce_product_get_price' );
+		$this->price_filter = (
+			$this->is_wc_version_below_3 ?
+			'woocommerce_get_price' :
+			'woocommerce_product_get_price'
+		);
 
 		// Price filter
 		add_filter( $this->price_filter, array( $this, 'get_robot_price' ), PHP_INT_MAX, 2 );
@@ -70,7 +109,11 @@ class Alg_WC_Price_Robot_Core {
 		// Display as sale
 		if ( 'yes' === get_option( 'alg_price_robot_general_display_as_sale', 'yes' ) ) {
 
-			$sale_price_filter  = ( $this->is_wc_version_below_3 ? 'woocommerce_get_sale_price' : 'woocommerce_product_get_sale_price' );
+			$sale_price_filter = (
+				$this->is_wc_version_below_3 ?
+				'woocommerce_get_sale_price' :
+				'woocommerce_product_get_sale_price'
+			);
 
 			// Sale price filters
 			add_filter( $sale_price_filter, array( $this, 'get_robot_price' ), PHP_INT_MAX, 2 );
@@ -91,10 +134,10 @@ class Alg_WC_Price_Robot_Core {
 	 * @version 1.3.0
 	 * @since   1.0.0
 	 *
-	 * @todo    [now] [!!!] (dev) `$price = ( abs( $price - $original_price ) < 1 ? $original_price : $price );`?
-	 * @todo    [now] [!!!] (dev) `woocommerce_get_sale_price`: rethink
-	 * @todo    [next] (dev) rename function?
-	 * @todo    [next] (dev) rename `alg_woocommerce_price_robot` filter?
+	 * @todo    (dev) `$price = ( abs( $price - $original_price ) < 1 ? $original_price : $price );`?
+	 * @todo    (dev) `woocommerce_get_sale_price`: rethink
+	 * @todo    (dev) rename function?
+	 * @todo    (dev) rename `alg_woocommerce_price_robot` filter?
 	 */
 	function get_robot_price( $price, $product, $advisor_mode = false ) {
 		if (
@@ -117,7 +160,11 @@ class Alg_WC_Price_Robot_Core {
 			$product_id     = $this->get_product_id( $product );
 			$original_price = $price;
 			$modified_price = apply_filters( 'alg_woocommerce_price_robot', $price, $product_id, $original_price );
-			$price          = ( $modified_price > 0 ? round( $modified_price, get_option( 'woocommerce_price_num_decimals', 2 ) ) : 0 );
+			$price          = (
+				$modified_price > 0 ?
+				round( $modified_price, get_option( 'woocommerce_price_num_decimals', 2 ) ) :
+				0
+			);
 		}
 		return $price;
 	}
@@ -129,18 +176,25 @@ class Alg_WC_Price_Robot_Core {
 	 * @since   1.1.0
 	 */
 	function get_product_id( $product ) {
-		return ( 'no' === get_option( 'alg_price_robot_general_variable_as_single', 'no' ) ?
-			$this->get_product_or_variation_id( $product ) : $this->get_product_or_variation_parent_id( $product ) );
+		return (
+			'no' === get_option( 'alg_price_robot_general_variable_as_single', 'no' ) ?
+			$this->get_product_or_variation_id( $product ) :
+			$this->get_product_or_variation_parent_id( $product )
+		);
 	}
 
 	/**
 	 * get_product_or_variation_id.
 	 *
-	 * @version 1.3.0
+	 * @version 2.0.0
 	 * @since   1.1.0
 	 */
 	function get_product_or_variation_id( $product ) {
-		return ( $this->is_wc_version_below_3 ? ( isset( $product->variation_id ) ? $product->variation_id : $product->id ) : $product->get_id() );
+		return (
+			$this->is_wc_version_below_3 ?
+			( $product->variation_id ?? $product->id ) :
+			$product->get_id()
+		);
 	}
 
 	/**
@@ -150,7 +204,15 @@ class Alg_WC_Price_Robot_Core {
 	 * @since   1.1.0
 	 */
 	function get_product_or_variation_parent_id( $product ) {
-		return ( $this->is_wc_version_below_3 ? $product->id : ( $product->is_type( 'variation' ) ? $product->get_parent_id() : $product->get_id() ) );
+		return (
+			$this->is_wc_version_below_3 ?
+			$product->id :
+			(
+				$product->is_type( 'variation' ) ?
+				$product->get_parent_id() :
+				$product->get_id()
+			)
+		);
 	}
 
 	/**
@@ -159,7 +221,7 @@ class Alg_WC_Price_Robot_Core {
 	 * @version 1.3.0
 	 * @since   1.1.0
 	 *
-	 * @todo    [next] (dev) redo this?
+	 * @todo    (dev) redo this?
 	 */
 	function get_variation_prices_hash( $price_hash, $product, $display ) {
 		$product_id = $this->get_product_or_variation_parent_id( $product );
@@ -199,7 +261,7 @@ class Alg_WC_Price_Robot_Core {
 	 * @version 1.3.0
 	 * @since   1.3.0
 	 *
-	 * @todo    [now] [!!!] (dev) `woocommerce_variation_prices_price`, `woocommerce_get_variation_prices_hash`, etc.
+	 * @todo    (dev) `woocommerce_variation_prices_price`, `woocommerce_get_variation_prices_hash`, etc.
 	 */
 	function get_product_price_original( $product ) {
 		if ( isset( $this->price_filter ) ) {
@@ -241,19 +303,30 @@ class Alg_WC_Price_Robot_Core {
 	 */
 	function get_data_last_updated_message() {
 		$cron_finished_time = get_option( 'get_orders_cron_finished', 0 );
-		return ( 0 != $cron_finished_time ? sprintf( __( 'Data last updated on %s.', 'price-robot-for-woocommerce' ), date( 'Y-m-d H:i:s', $cron_finished_time ) ) : '' );
+		return (
+			0 != $cron_finished_time ?
+			sprintf(
+				/* Translators: %s: Date. */
+				__( 'Data last updated on %s.', 'price-robot-for-woocommerce' ),
+				date( 'Y-m-d H:i:s', $cron_finished_time )
+			) :
+			''
+		);
 	}
 
 	/**
 	 * is_price_robot_enabled.
 	 *
-	 * @version 1.3.0
+	 * @version 2.0.0
 	 * @since   1.3.0
 	 *
-	 * @todo    [now] [!!!] (dev) finish this, e.g. in admin
+	 * @todo    (dev) finish this, e.g., in admin
 	 */
 	function is_price_robot_enabled( $product_id ) {
-		return ( apply_filters( 'alg_wc_price_robot_all_products', false ) || 'yes' === get_post_meta( $product_id, '_price_robot_enabled', true ) );
+		return (
+			'yes' === get_option( 'alg_wc_price_robot_all_products', 'no' ) ||
+			'yes' === get_post_meta( $product_id, '_price_robot_enabled', true )
+		);
 	}
 
 }

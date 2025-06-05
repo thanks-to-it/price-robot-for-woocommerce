@@ -2,7 +2,7 @@
 /**
  * Price Robot for WooCommerce - Settings - Section
  *
- * @version 1.3.0
+ * @version 2.0.0
  * @since   1.3.0
  *
  * @author  Algoritmika Ltd.
@@ -15,14 +15,37 @@ if ( ! class_exists( 'Alg_WC_Price_Robot_Settings_Section' ) ) :
 class Alg_WC_Price_Robot_Settings_Section {
 
 	/**
+	 * id.
+	 *
+	 * @version 2.0.0
+	 * @since   2.0.0
+	 */
+	public $id;
+
+	/**
+	 * desc.
+	 *
+	 * @version 2.0.0
+	 * @since   2.0.0
+	 */
+	public $desc;
+
+	/**
 	 * Constructor.
 	 *
 	 * @version 1.3.0
 	 * @since   1.3.0
 	 */
 	function __construct() {
-		add_filter( 'woocommerce_get_sections_alg_wc_price_robot',              array( $this, 'settings_section' ) );
-		add_filter( 'woocommerce_get_settings_alg_wc_price_robot_' . $this->id, array( $this, 'get_settings' ), PHP_INT_MAX );
+		add_filter(
+			'woocommerce_get_sections_alg_wc_price_robot',
+			array( $this, 'settings_section' )
+		);
+		add_filter(
+			'woocommerce_get_settings_alg_wc_price_robot_' . $this->id,
+			array( $this, 'get_settings' ),
+			PHP_INT_MAX
+		);
 	}
 
 	/**

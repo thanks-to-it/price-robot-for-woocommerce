@@ -1,19 +1,25 @@
-=== Price Robot for WooCommerce ===
-Contributors: wpcodefactory, omardabbas, karzin, anbinder, algoritmika, kousikmukherjeeli
-Tags: woocommerce, price, robot, advisor, woo commerce
+=== Advanced Conditional Pricing for WooCommerce ===
+Contributors: algoritmika, thankstoit, anbinder, karzin
+Tags: woocommerce, price, conditional pricing, dynamic pricing, price robot
 Requires at least: 5.0
-Tested up to: 6.6
-Stable tag: 1.3.3
+Tested up to: 6.8
+Stable tag: 2.0.0
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-The plugin calculates optimal price for products in WooCommerce. Can work as advisor or in automatic mode.
+The plugin automatically calculates the optimal price for products in WooCommerce. Can work as an advisor or in automatic mode.
 
 == Description ==
 
-The **Price Robot for WooCommerce** plugin helps you calculate the optimal price for products in WooCommerce. Can work as an advisor or in automatic mode.
+The **Advanced Conditional Pricing for WooCommerce** plugin is your tool to automatically determine the best prices for your products. This plugin can function as a consultative assistant or be set to an automatic mode to seamlessly integrate optimal pricing strategies into your WooCommerce store.
 
-### &#9989; How it Works ###
+Leveraging mathematical operations and plugin-specific shortcodes, it allows you to formulate pricing rules. For instance, you can apply charming prices to ensure that all your product prices end with .99 cents, giving a perception of a deal to your customers.
+
+Besides just adjusting prices to appear more attractive, it can intelligently react to your product's sales data to find the optimal price point. If a product hasn't been selling over a specified period, the plugin can be configured to automatically reduce its price, encouraging a potential increase in sales.
+
+Experience a new level of pricing strategy, where technology meets commerce to drive success.
+
+### ✅ How it Works ###
 
 The plugin uses formula to calculate the product prices. You can set the formula by using plugin's shortcodes and mathematical operations.
 
@@ -23,10 +29,14 @@ For example, the formula that automatically modifies the product price, so that 
 [ceil][product_price][/ceil]-0.01
 `
 
-### &#128472; Feedback ###
+### 🗘 Feedback ###
 
 * We are open to your suggestions and feedback. Thank you for using or trying out one of our plugins!
-* [Visit plugin site](https://wpfactory.com/item/price-robot-for-woocommerce-plugin/).
+* Head to the plugin [GitHub Repository](https://github.com/thanks-to-it/price-robot-for-woocommerce) to find out how you can pitch in.
+
+### ℹ More ###
+
+* The plugin is **"High-Performance Order Storage (HPOS)"** compatible.
 
 == Installation ==
 
@@ -41,8 +51,23 @@ For example, the formula that automatically modifies the product price, so that 
 
 == Changelog ==
 
+= 2.0.0 - 05/06/2025 =
+* Fix - Translation loading fixed.
+* Dev - "Automatic pricing > All products" option moved to the free plugin version.
+* Dev - The free plugin version now allows an unlimited number of price-robot-enabled products.
+* Dev - Security - Output escaped.
+* Dev - Security - Input sanitized escaped.
+* Dev - "High-Performance Order Storage (HPOS)" compatibility.
+* Dev - PHP v8.2 compatibility (dynamic properties).
+* Dev - Admin settings descriptions updated.
+* Dev - Code refactoring.
+* Dev - Coding standards improved.
+* Plugin renamed from "Price Robot for WooCommerce" to "Advanced Conditional Pricing for WooCommerce".
+* WC tested up to: 9.8.
+* Tested up to: 6.8.
+
 = 1.3.3 - 31/07/2024 =
-* WC tested up to: 9.1
+* WC tested up to: 9.1.
 * Tested up to: 6.6.
 
 = 1.3.2 - 26/09/2023 =
@@ -68,8 +93,8 @@ For example, the formula that automatically modifies the product price, so that 
 * Dev - Localization - `load_plugin_textdomain()` function moved to the `init` action.
 * Dev - Plugin is initialized on the `plugins_loaded` action now.
 * Dev - Code refactoring.
-* Tested up to: 6.0.
 * WC tested up to: 7.0.
+* Tested up to: 6.0.
 * Readme.txt updated.
 * Deploy script added.
 
@@ -78,8 +103,8 @@ For example, the formula that automatically modifies the product price, so that 
 * Dev - Admin settings descriptions updated.
 * Tags updated.
 * Requires at least: 5.0.
-* Tested up to: 5.3.
 * WC tested up to: 4.0.
+* Tested up to: 5.3.
 
 = 1.1.1 - 29/10/2018 =
 * Dev - Check for "price not empty" added to `get_robot_price()`.
